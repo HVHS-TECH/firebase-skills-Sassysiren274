@@ -35,10 +35,27 @@ function Goodbye() {
 }
 function simpleRead() {
   console.log("Reading message");
-  firebase.database().ref('/').child('message').on('value', display);
+  firebase.database().ref('/').child('message').once('value', display);
   console.log("Leaving simpleRead")
 }
 function display(snapshot) {
   console.log("Running display(), the message is: " + snapshot.val())
   HTML_OUTPUT.innerHTML = snapshot.val();
 }
+function readListener() {
+  console.log("Reading Listener");
+  firebase.database().ref('/message').on('value', display);
+  console.log("Leaving readListener")
+}
+firebase.database().ref('/').set(
+  {
+    game1: {
+    users: {
+      Dhruv : 9999
+      Jack: 100000
+      toby: 9
+      yug; 987654321
+    }
+  }
+  }
+)
