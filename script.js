@@ -50,12 +50,16 @@ function readListener() {
 firebase.database().ref('/').set(
   {
     game1: {
-    users: {
-      Dhruv : 9999
-      Jack: 100000
-      toby: 9
-      yug; 987654321
+      users: {
+        Dhruv : 9999,
+        Jack: 100000,
+        toby: 9,
+        yug: 987654321,
+      }
     }
   }
-  }
 )
+function fb_readHighScores(){
+  console.log("Reading High Scores");
+  firebase.database().ref('/highscores/game1').once('value')
+}
