@@ -19,7 +19,7 @@ const HTML_OUTPUT = document.getElementById("databaseOutput");
 /**************************************************************/
 function helloWorld() {
   console.log("Running helloWorld()")
-  firebase.database().ref('/').set(
+  firebase.database().ref('/info').set(
     {
       message: 'Kia ora te ao!'
     }
@@ -27,7 +27,7 @@ function helloWorld() {
 }
 function Goodbye() {
   console.log("Running Goodbye()")
-  firebase.database().ref('/').set(
+  firebase.database().ref('/info').set(
     {
       message: 'Goodbye!'
     }
@@ -51,15 +51,28 @@ firebase.database().ref('/').set(
   {
     game1: {
       users: {
-        Dhruv : 9999,
+        Dhruv: 9999,
         Jack: 100000,
         toby: 9,
         yug: 987654321,
       }
+    },
+    game2: {
+      users: {
+        Imy: 77,
+        John: 65,
+        Alex: 3,
+      }
     }
   }
 )
-function fb_readHighScores(){
+function logDatabaseRead(){
   console.log("Reading High Scores");
-  firebase.database().ref('/highscores/game1').once('value')
+   firebase.database().ref('/info/message').on('value', display);
+  console.log("Leaving Log DatabaseRead")
+}
+
+function fb_readHighScores() {
+  console.log("Reading High Scores");
+  firebase.database().ref('/highscores/game1').once('value', logDatabaseRead)
 }
