@@ -35,17 +35,17 @@ function Goodbye() {
 }
 function simpleRead() {
   console.log("Reading message");
-  firebase.database().ref('/').child('message').once('value', display);
+  firebase.database().ref('/info/message').once('value', display);
   console.log("Leaving simpleRead")
-}
-function display(snapshot) {
-  console.log("Running display(), the message is: " + snapshot.val())
-  HTML_OUTPUT.innerHTML = snapshot.val();
 }
 function readListener() {
   console.log("Reading Listener");
-  firebase.database().ref('/message').on('value', display);
+  firebase.database().ref('/info/message').on('value', display);
   console.log("Leaving readListener")
+}
+function display(snapshot) {
+  console.log("Running display(), the message is: " + snapshot.val());
+  HTML_OUTPUT.innerHTML = snapshot.val();
 }
 firebase.database().ref('/').set(
   {
@@ -66,13 +66,13 @@ firebase.database().ref('/').set(
     }
   }
 )
-function logDatabaseRead(){
+function logDatabaseRead() {
   console.log("Reading High Scores");
-   firebase.database().ref('/info/message').on('value', display);
+  firebase.database().ref('/info/message').on('value', display);
   console.log("Leaving Log DatabaseRead")
 }
 
 function fb_readHighScores() {
   console.log("Reading High Scores");
-  firebase.database().ref('/highscores/game1').once('value', logDatabaseRead)
+  firebase.database().ref('game1').once('value', logDatabaseRead)
 }
