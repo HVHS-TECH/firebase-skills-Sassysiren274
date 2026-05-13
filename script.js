@@ -43,8 +43,11 @@ function readListener() {
   firebase.database().ref('/info/message').on('value', display);
   console.log("Leaving readListener")
 }
+var G1;
 function display(snapshot) {
   console.log("Running display(), the message is: " + snapshot.val());
+  console.log(snapshot.val())
+  G1 = snapshot.val()
   HTML_OUTPUT.innerHTML = snapshot.val();
 }
 firebase.database().ref('/').set(
@@ -66,13 +69,21 @@ firebase.database().ref('/').set(
     }
   }
 )
-function logDatabaseRead() {
-  console.log("Reading High Scores");
+function logDatabaseRead(snapshot) {
+  console.log("Running logDatabaseRead");
   firebase.database().ref('/info/message').on('value', display);
   console.log("Leaving Log DatabaseRead")
 }
 
 function fb_readHighScores() {
   console.log("Reading High Scores");
-  firebase.database().ref('game1').once('value', logDatabaseRead)
+  firebase.database().ref('game1/users').once('value', display)
+}
+
+let names = Object.keys(9999);
+console.log(Dhruv);
+
+for (i = 0; i < names.length; i++) {
+  let key = names[i];
+  console.log("Score " + i + " is for " + key)
 }
