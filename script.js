@@ -48,7 +48,7 @@ function display(snapshot) {
   console.log("Running display(), the message is: " + snapshot.val());
   console.log(snapshot.val())
   G1 = snapshot.val()
-  HTML_OUTPUT.innerHTML = snapshot.val();
+  HTML_OUTPUT.innerHTML = "Hello World"//snapshot.val();
 }
 firebase.database().ref('/').set(
   {
@@ -79,11 +79,11 @@ function fb_readHighScores() {
   console.log("Reading High Scores");
   firebase.database().ref('game1/users').once('value', display)
 }
+const users = ["Dhruv", "Jack", "Toby", "Yug"];
+let Score = users.HighScores;
 
-let names = Object.keys(9999);
-console.log(Dhruv);
-
-for (i = 0; i < names.length; i++) {
-  let key = names[i];
+for (i = 0; i < users.length; i++) {
+  let key = users[i];
   console.log("Score " + i + " is for " + key)
+   HTML_OUTPUT.innerHTML += "Score " + i + " is for " + key
 }
